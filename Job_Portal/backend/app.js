@@ -19,7 +19,7 @@ const cookieParser = require("cookie-parser");
 const errorHandler = require("./middleware/error");
 
 //database connection
-mongoose.connect("mongodb+srv://utthamsingk2021ece:9rvFJEz6ChTpxbfX@cluster0.m38blta.mongodb.net/test?retryWrites=true&w=majority&appName=Cluster0", {
+mongoose.connect(process.env.DATABASE, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true,
@@ -36,13 +36,7 @@ app.use(bodyParser.urlencoded({
     extended: true
 }));
 app.use(cookieParser());
-app.use(cors(
-    {
-        origin:["https://deploy-mern-1whq.vercel.app"],
-        methods:["POST","GET"],
-        credentials:true
-    }
-));
+app.use(cors());
 
 
 //ROUTES MIDDLEWARE
